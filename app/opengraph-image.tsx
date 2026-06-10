@@ -136,7 +136,7 @@ export default function Image() {
               boxShadow: "0 0 8px rgba(52,211,153,0.6)",
             }} />
             <span style={{ fontSize: "22px", color: "#94a3b8" }}>
-              Developer · Belgium · Open to opportunities
+              Developer · Belgium
             </span>
           </div>
 
