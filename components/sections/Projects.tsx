@@ -95,31 +95,34 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                {/* Tech tags + repo link */}
-                <div className="flex items-end justify-between pl-4 mt-auto gap-3">
-                  <div className="flex flex-wrap gap-1.5 flex-1">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className={`font-mono text-[10px] px-2 py-1 rounded-md border ${a.tag}`}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {project.repo && (
-                    <a
-                      href={project.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${project.name} repository`}
-                      className="shrink-0 p-1.5 rounded-lg text-slate-400 dark:text-slate-600 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-violet-500/8 transition-all duration-200"
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-1.5 pl-4 mt-auto">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className={`font-mono text-[10px] px-2 py-1 rounded-md border ${a.tag}`}
                     >
-                      <ExternalLinkIcon />
-                    </a>
-                  )}
+                      {t}
+                    </span>
+                  ))}
                 </div>
+
+                {/* Hover reveal — View on GitHub */}
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-x-0 bottom-0 h-12 flex items-center justify-center gap-2
+                      opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0
+                      transition-all duration-300
+                      bg-gradient-to-t from-violet-500/20 via-violet-500/8 to-transparent
+                      rounded-b-2xl font-mono text-xs text-violet-600 dark:text-violet-400 font-semibold"
+                  >
+                    View on GitHub
+                    <ExternalLinkIcon />
+                  </a>
+                )}
               </AnimateTiltCard>
             );
           })}

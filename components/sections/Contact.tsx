@@ -30,17 +30,27 @@ export default function Contact() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            {/* Email — opens mail client + copies address */}
-            <a
-              href={`mailto:${personal.email}`}
-              onClick={handleEmailClick}
-              className="inline-flex items-center gap-3 px-5 py-3.5 rounded-xl bg-violet-600/10 border border-violet-500/25 text-violet-700 dark:text-violet-300 font-mono text-xs hover:bg-violet-600/20 hover:border-violet-500/45 hover:shadow-lg hover:shadow-violet-500/10 transition-all duration-200 group"
-            >
-              {copied ? <CheckIcon /> : <MailIcon />}
-              <span className="truncate">
-                {copied ? "Copied to clipboard!" : personal.email}
-              </span>
-            </a>
+            {/* Email — opens mail client */}
+            <div className="inline-flex items-stretch rounded-xl overflow-hidden border border-violet-500/25 bg-violet-600/10">
+              <a
+                href={`mailto:${personal.email}`}
+                className="inline-flex items-center gap-3 px-5 py-3.5 text-violet-700 dark:text-violet-300 font-mono text-xs hover:bg-violet-600/10 transition-all duration-200 flex-1 min-w-0"
+              >
+                <MailIcon />
+                <span className="truncate">{personal.email}</span>
+              </a>
+              <button
+                onClick={handleEmailClick}
+                aria-label="Copy email"
+                className={`px-3.5 border-l border-violet-500/25 transition-all duration-200 shrink-0 ${
+                  copied
+                    ? "text-emerald-500 bg-emerald-500/10"
+                    : "text-violet-500 hover:bg-violet-600/15 hover:text-violet-600 dark:hover:text-violet-300"
+                }`}
+              >
+                {copied ? <CheckIcon /> : <ClipboardIcon />}
+              </button>
+            </div>
 
             <a
               href={personal.github}
@@ -54,11 +64,19 @@ export default function Contact() {
           </div>
 
           <p className="mt-4 font-mono text-[11px] text-slate-400 dark:text-slate-600">
-            Clicking the email also copies it to your clipboard.
+            {copied ? "Copied to clipboard!" : "Click the clipboard icon to copy the address."}
           </p>
         </AnimateIn>
       </div>
     </section>
+  );
+}
+
+function ClipboardIcon() {
+  return (
+    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+    </svg>
   );
 }
 

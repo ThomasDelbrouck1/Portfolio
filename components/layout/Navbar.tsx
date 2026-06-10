@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { personal } from "@/data/content";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 const links = [
   { label: "Now",     href: "#activity",  section: "activity" },
@@ -41,6 +42,7 @@ export default function Navbar() {
 
   return (
     <>
+      <ScrollProgress />
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
@@ -62,13 +64,16 @@ export default function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                className={`font-mono text-xs tracking-wide transition-colors duration-200 ${
+                className={`relative pb-1 font-mono text-xs tracking-wide transition-colors duration-200 ${
                   activeSection === l.section
                     ? "text-violet-600 dark:text-violet-400"
                     : "text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400"
                 }`}
               >
                 {l.label}
+                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-violet-500 transition-all duration-300 ${
+                  activeSection === l.section ? "opacity-100 scale-100" : "opacity-0 scale-0"
+                }`} />
               </a>
             ))}
             <ThemeToggle />

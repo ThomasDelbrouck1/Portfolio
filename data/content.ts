@@ -10,6 +10,11 @@ export const personal = {
   // cv: "/cv.pdf", // uncomment and add your PDF to public/cv.pdf when ready
 };
 
+export const nowBuilding = [
+  { label: "BASF internship prep", tech: "Python · Dash · data tooling" },
+  { label: "This portfolio", tech: "Next.js · Vercel" },
+] as const;
+
 export interface Project {
   name: string;
   description: string;

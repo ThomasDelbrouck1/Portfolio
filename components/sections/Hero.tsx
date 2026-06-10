@@ -1,4 +1,4 @@
-import { personal } from "@/data/content";
+import { personal, nowBuilding } from "@/data/content";
 import CountUp from "@/components/ui/CountUp";
 
 export default function Hero() {
@@ -58,8 +58,26 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* Currently building */}
+        <div className="mt-10 flex flex-wrap items-center gap-2.5">
+          <span className="font-mono text-[10px] tracking-[0.18em] text-slate-400 dark:text-slate-600 uppercase">
+            Now building
+          </span>
+          {nowBuilding.map((item) => (
+            <span
+              key={item.label}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass font-mono text-[11px] text-slate-600 dark:text-slate-400"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-dot shrink-0" />
+              {item.label}
+              <span className="text-slate-300 dark:text-slate-700">·</span>
+              <span className="text-slate-400 dark:text-slate-500">{item.tech}</span>
+            </span>
+          ))}
+        </div>
+
         {/* Animated stats */}
-        <div className="mt-24 pt-10 border-t border-slate-200 dark:border-white/[0.06] flex flex-wrap gap-6 sm:gap-10">
+        <div className="mt-16 pt-10 border-t border-slate-200 dark:border-white/[0.06] flex flex-wrap gap-6 sm:gap-10">
           {[
             { to: 5,  suffix: "",   label: "projects shipped" },
             { to: 20, suffix: "+",  label: "technologies" },
