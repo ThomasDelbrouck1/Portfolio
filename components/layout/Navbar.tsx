@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { personal } from "@/data/content";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import ScrollProgress from "@/components/ui/ScrollProgress";
 
 const links = [
   { label: "Now",     href: "#activity",  section: "activity" },
@@ -42,7 +41,6 @@ export default function Navbar() {
 
   return (
     <>
-      <ScrollProgress />
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
