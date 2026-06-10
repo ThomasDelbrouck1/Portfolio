@@ -20,7 +20,7 @@ export default function Contact() {
         <AnimateIn className="max-w-lg">
           <SectionLabel />
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
-            Let&apos;s Connect
+            Let&apos;s Connnect
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-10">
             Currently looking for an internship or junior role where I can do
