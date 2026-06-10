@@ -71,6 +71,6 @@ export const activityEvents: ActivityEvent[] = [
 export const statusItems = [
   { label: "Active focus",  value: "Internship prep" },
   { label: "Focus stack",   value: "Python / ML" },
-  { label: "School year",   value: "3rd year" },
+  { label: "School year",   value: "2nd year" },
   { label: "Internship",    value: "BASF · 2026" },
 ];
