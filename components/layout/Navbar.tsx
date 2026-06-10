@@ -18,29 +18,28 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 24);
-      const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 80;
-      if (atBottom) setActiveSection("contact");
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { rootMargin: "-20% 0px -80% 0px", threshold: 0 }
-    );
-    links.forEach(({ section }) => {
-      const el = document.getElementById(section);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
+    const updateActive = () => {
+      const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 80;
+      if (atBottom) { setActiveSection("contact"); return; }
+
+      const offset = window.innerHeight * 0.25;
+      let current = links[0].section;
+      for (const { section } of links) {
+        const el = document.getElementById(section);
+        if (el && el.getBoundingClientRect().top <= offset) current = section;
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", updateActive, { passive: true });
+    updateActive();
+    return () => window.removeEventListener("scroll", updateActive);
   }, []);
 
   return (
