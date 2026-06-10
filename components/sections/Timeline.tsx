@@ -2,28 +2,40 @@ import { timeline } from "@/data/content";
 
 const typeStyles = {
   education: {
-    dot: "bg-blue-400",
-    glow: "shadow-blue-400/50",
-    badge: "text-blue-400 border-blue-400/20 bg-blue-400/5",
-    label: "Education",
+    dot:      "bg-blue-400",
+    ring:     "ring-2 ring-blue-400/30",
+    glow:     "0 0 12px 3px rgba(96,165,250,0.45)",
+    badge:    "text-blue-400 border-blue-400/30 bg-blue-400/8",
+    year:     "text-blue-400/70",
+    border:   "border-l-2 border-blue-500/30",
+    label:    "Education",
   },
   project: {
-    dot: "bg-violet-400",
-    glow: "shadow-violet-400/50",
-    badge: "text-violet-400 border-violet-400/20 bg-violet-400/5",
-    label: "Projects",
+    dot:      "bg-violet-400",
+    ring:     "ring-2 ring-violet-400/30",
+    glow:     "0 0 12px 3px rgba(167,139,250,0.45)",
+    badge:    "text-violet-400 border-violet-400/30 bg-violet-400/8",
+    year:     "text-violet-400/70",
+    border:   "border-l-2 border-violet-500/30",
+    label:    "Projects",
   },
   milestone: {
-    dot: "bg-cyan-400",
-    glow: "shadow-cyan-400/50",
-    badge: "text-cyan-400 border-cyan-400/20 bg-cyan-400/5",
-    label: "Milestone",
+    dot:      "bg-cyan-400",
+    ring:     "ring-2 ring-cyan-400/30",
+    glow:     "0 0 12px 3px rgba(34,211,238,0.45)",
+    badge:    "text-cyan-400 border-cyan-400/30 bg-cyan-400/8",
+    year:     "text-cyan-400/70",
+    border:   "border-l-2 border-cyan-500/30",
+    label:    "Milestone",
   },
   upcoming: {
-    dot: "bg-slate-700",
-    glow: "shadow-slate-700/50",
-    badge: "text-slate-600 border-slate-700/20 bg-slate-700/5",
-    label: "Upcoming",
+    dot:      "bg-slate-600",
+    ring:     "ring-2 ring-slate-600/30",
+    glow:     "0 0 8px 2px rgba(100,116,139,0.3)",
+    badge:    "text-slate-500 border-slate-600/30 bg-slate-600/8",
+    year:     "text-slate-600",
+    border:   "border-l-2 border-slate-600/20",
+    label:    "Upcoming",
   },
 } as const;
 
@@ -31,7 +43,7 @@ export default function Timeline() {
   return (
     <section id="timeline" className="py-28 relative">
       <div className="relative max-w-6xl mx-auto px-6">
-        <SectionLabel index="03" text="My Path" />
+        <SectionLabel />
         <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-3">
           How I Got Here
         </h2>
@@ -40,21 +52,24 @@ export default function Timeline() {
         </p>
 
         <div className="relative max-w-xl">
-          {/* Line */}
-          <div className="absolute left-[7px] top-3 bottom-3 w-px bg-gradient-to-b from-violet-500/25 via-white/[0.03] to-transparent" />
+          {/* Connector line */}
+          <div className="absolute left-[9px] top-4 bottom-4 w-px bg-gradient-to-b from-blue-500/30 via-violet-500/20 via-cyan-500/15 to-transparent" />
 
           <div className="space-y-5">
             {timeline.map((entry, i) => {
               const s = typeStyles[entry.type];
               return (
                 <div key={i} className="relative flex gap-7">
-                  {/* Dot */}
-                  <div className={`relative z-10 mt-[22px] flex-shrink-0 w-[15px] h-[15px] rounded-full ${s.dot} shadow-lg ${s.glow}`} />
+                  {/* Dot with glow */}
+                  <div
+                    className={`relative z-10 mt-[21px] flex-shrink-0 w-[19px] h-[19px] rounded-full ${s.dot} ${s.ring}`}
+                    style={{ boxShadow: s.glow }}
+                  />
 
                   {/* Card */}
-                  <div className="flex-1 glass glass-hover rounded-2xl px-5 py-4">
+                  <div className={`flex-1 glass glass-hover rounded-2xl px-5 py-4 ${s.border}`}>
                     <div className="flex flex-wrap items-center gap-2.5 mb-2">
-                      <span className="font-mono text-base font-bold text-slate-700">
+                      <span className={`font-mono text-base font-bold ${s.year}`}>
                         {entry.year}
                       </span>
                       <span className={`font-mono text-[10px] px-2 py-0.5 rounded-full border ${s.badge}`}>
@@ -78,12 +93,12 @@ export default function Timeline() {
   );
 }
 
-function SectionLabel({ index, text }: { index: string; text: string }) {
+function SectionLabel() {
   return (
     <div className="flex items-center gap-2.5 mb-4">
-      <span className="font-mono text-[10px] text-violet-500">▸</span>
+      <span className="font-mono text-[10px] text-blue-400">▸</span>
       <span className="font-mono text-[10px] tracking-[0.2em] text-slate-600 uppercase">
-        {index} · {text}
+        03 · My Path
       </span>
     </div>
   );

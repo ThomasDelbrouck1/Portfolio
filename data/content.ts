@@ -62,18 +62,22 @@ export type Project = (typeof projects)[number];
 export const stackCategories = [
   {
     label: "Languages",
+    color: "violet",
     items: ["JavaScript", "TypeScript", "C#", "Python", "SQL", "HTML", "CSS"],
   },
   {
     label: "Frameworks & Libraries",
+    color: "indigo",
     items: ["Node.js", "Express", ".NET", "EJS", "Qiskit"],
   },
   {
     label: "Databases",
+    color: "blue",
     items: ["MongoDB", "MySQL"],
   },
   {
     label: "DevOps & Cloud",
+    color: "cyan",
     items: [
       "Docker",
       "Docker Compose",
@@ -85,6 +89,7 @@ export const stackCategories = [
   },
   {
     label: "Tools & Concepts",
+    color: "emerald",
     items: [
       "Git",
       "REST APIs",

@@ -2,27 +2,18 @@
 
 import { useEffect, useRef } from "react";
 
-interface Blob {
+interface Particle {
   x: number;
   y: number;
   vx: number;
   vy: number;
-  rx: number;
-  ry: number;
-  rgb: string;
+  r: number;
   alpha: number;
-  alphaTarget: number;
 }
 
-// Violet / indigo / blue / cyan palette
-const PALETTE = [
-  "124,58,237",  // violet-600
-  "79,70,229",   // indigo-600
-  "37,99,235",   // blue-600
-  "6,182,212",   // cyan-500
-  "139,92,246",  // violet-500
-  "99,102,241",  // indigo-400
-];
+const COUNT = 60;
+const LINK_DIST = 140;
+const SPEED = 0.18;
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,7 +25,7 @@ export default function ParticleBackground() {
     if (!ctx) return;
 
     let raf: number;
-    const blobs: Blob[] = [];
+    const particles: Particle[] = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -43,64 +34,51 @@ export default function ParticleBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    for (let i = 0; i < 6; i++) {
-      // Spread initial positions evenly so no empty corners
-      const angle = (i / 6) * Math.PI * 2 + Math.random() * 1.0;
-      const dist = 0.25 + Math.random() * 0.35;
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
-      const spread = Math.min(cx, cy) * 1.2;
-      const driftAngle = Math.random() * Math.PI * 2;
-      const speed = 0.08 + Math.random() * 0.14;
-      const alpha = 0.07 + Math.random() * 0.07;
-
-      blobs.push({
-        x: cx + Math.cos(angle) * spread * dist,
-        y: cy + Math.sin(angle) * spread * dist,
-        vx: Math.cos(driftAngle) * speed,
-        vy: Math.sin(driftAngle) * speed,
-        rx: 260 + Math.random() * 260,
-        ry: 180 + Math.random() * 200,
-        rgb: PALETTE[i % PALETTE.length],
-        alpha,
-        alphaTarget: alpha + (Math.random() - 0.5) * 0.06,
+    for (let i = 0; i < COUNT; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = SPEED * (0.6 + Math.random() * 0.8);
+      particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: 0.6 + Math.random() * 1.4,
+        alpha: 0.12 + Math.random() * 0.28,
       });
     }
 
     const tick = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (const b of blobs) {
-        // Drift
-        b.x += b.vx;
-        b.y += b.vy;
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
 
-        // Soft wrap with padding so blobs stay clear of canvas edges
-        const pad = Math.max(b.rx, b.ry) + 100;
-        if (b.x < -pad) b.x = canvas.width + pad;
-        if (b.x > canvas.width + pad) b.x = -pad;
-        if (b.y < -pad) b.y = canvas.height + pad;
-        if (b.y > canvas.height + pad) b.y = -pad;
-
-        // Slowly ease alpha toward a random target, then pick a new one
-        b.alpha += (b.alphaTarget - b.alpha) * 0.004;
-        if (Math.abs(b.alpha - b.alphaTarget) < 0.002) {
-          b.alphaTarget = 0.04 + Math.random() * 0.1;
-        }
-
-        // Draw an elliptical soft blob via radial gradient + scale transform
-        ctx.save();
-        ctx.translate(b.x, b.y);
-        ctx.scale(1, b.ry / b.rx);
-        const g = ctx.createRadialGradient(0, 0, 0, 0, 0, b.rx);
-        g.addColorStop(0,   `rgba(${b.rgb},${b.alpha})`);
-        g.addColorStop(0.45, `rgba(${b.rgb},${b.alpha * 0.55})`);
-        g.addColorStop(1,   `rgba(${b.rgb},0)`);
         ctx.beginPath();
-        ctx.arc(0, 0, b.rx, 0, Math.PI * 2);
-        ctx.fillStyle = g;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(167, 139, 250, ${p.alpha})`;
         ctx.fill();
-        ctx.restore();
+      }
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < LINK_DIST) {
+            const lineAlpha = (1 - d / LINK_DIST) * 0.09;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(129, 140, 248, ${lineAlpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
       }
 
       raf = requestAnimationFrame(tick);
@@ -118,7 +96,7 @@ export default function ParticleBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 0, filter: "blur(72px)" }}
+      style={{ zIndex: 0 }}
     />
   );
 }
