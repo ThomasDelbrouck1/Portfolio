@@ -23,9 +23,10 @@ export default function Contact() {
             Let&apos;s Connect
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-10">
-            Looking for a position in tech where I can do real work — data
-            engineering, ML systems, developer tooling, or full-stack. If
-            you&apos;re hiring or know someone who is, let&apos;s talk.
+            Actively looking for a position in tech — particularly in data
+            engineering, ML systems, developer tooling, or full-stack. Always
+            happy to connect, whether you have something in mind or just want
+            to exchange ideas.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
