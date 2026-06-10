@@ -1,10 +1,8 @@
 import { personal, nowBuilding, projects, stackItems } from "@/data/content";
 import CountUp from "@/components/ui/CountUp";
 
-const shippedStatuses = ["Production", "Shipped", "Live", "Completed"];
-
 export default function Hero() {
-  const shippedCount = projects.filter(p => shippedStatuses.includes(p.status)).length;
+  const shippedCount = projects.filter(p => p.status === "Shipped").length;
   const techCount    = stackItems.length;
 
   return (
