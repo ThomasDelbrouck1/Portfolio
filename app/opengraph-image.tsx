@@ -123,7 +123,7 @@ export default function Image() {
             letterSpacing: "0.1em",
           }}
         >
-          Open to opportunities
+          thomasdelbrouck.dev
         </div>
       </div>
     ),
