@@ -3,17 +3,14 @@
 import { useEffect, useRef } from "react";
 
 interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  r: number;
-  alpha: number;
+  x: number; y: number;
+  vx: number; vy: number;
+  r: number; alpha: number;
 }
 
-const COUNT = 60;
+const COUNT    = 60;
 const LINK_DIST = 140;
-const SPEED = 0.18;
+const SPEED    = 0.18;
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -25,10 +22,16 @@ export default function ParticleBackground() {
     if (!ctx) return;
 
     let raf: number;
+    let isDark = document.documentElement.classList.contains("dark");
     const particles: Particle[] = [];
 
+    const observer = new MutationObserver(() => {
+      isDark = document.documentElement.classList.contains("dark");
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
     const resize = () => {
-      canvas.width = window.innerWidth;
+      canvas.width  = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resize();
@@ -50,6 +53,12 @@ export default function ParticleBackground() {
     const tick = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Dark: violet-400 particles; Light: violet-700 particles (darker, higher contrast)
+      const pRgb  = isDark ? "167,139,250" : "109,40,217";
+      const lRgb  = isDark ? "129,140,248" : "79,70,229";
+      const alphaScale = isDark ? 1 : 1.5;
+      const lineScale  = isDark ? 1 : 1.35;
+
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
@@ -60,7 +69,7 @@ export default function ParticleBackground() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(167, 139, 250, ${p.alpha})`;
+        ctx.fillStyle = `rgba(${pRgb}, ${p.alpha * alphaScale})`;
         ctx.fill();
       }
 
@@ -70,11 +79,11 @@ export default function ParticleBackground() {
           const dy = particles[i].y - particles[j].y;
           const d = Math.sqrt(dx * dx + dy * dy);
           if (d < LINK_DIST) {
-            const lineAlpha = (1 - d / LINK_DIST) * 0.09;
+            const lineAlpha = (1 - d / LINK_DIST) * 0.09 * lineScale;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(129, 140, 248, ${lineAlpha})`;
+            ctx.strokeStyle = `rgba(${lRgb}, ${lineAlpha})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -89,6 +98,7 @@ export default function ParticleBackground() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      observer.disconnect();
     };
   }, []);
 

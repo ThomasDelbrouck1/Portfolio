@@ -2,23 +2,41 @@
 
 import { useState, useEffect } from "react";
 import { personal } from "@/data/content";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const links = [
-  { label: "Work",    href: "#projects" },
-  { label: "Stack",   href: "#stack" },
-  { label: "Path",    href: "#timeline" },
-  { label: "Now",     href: "#activity" },
-  { label: "Contact", href: "#contact" },
+  { label: "Now",     href: "#activity",  section: "activity" },
+  { label: "Work",    href: "#projects",  section: "projects" },
+  { label: "Stack",   href: "#stack",     section: "stack" },
+  { label: "Path",    href: "#timeline",  section: "timeline" },
+  { label: "Contact", href: "#contact",   section: "contact" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled]         = useState(false);
+  const [menuOpen, setMenuOpen]         = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-20% 0px -80% 0px", threshold: 0 }
+    );
+    links.forEach(({ section }) => {
+      const el = document.getElementById(section);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -26,7 +44,7 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-[#030307]/80 backdrop-blur-2xl border-b border-white/[0.07] py-3"
+            ? "bg-white/80 dark:bg-[#030307]/80 backdrop-blur-2xl border-b border-black/[0.06] dark:border-white/[0.07] py-3"
             : "bg-transparent py-5"
         }`}
       >
@@ -38,46 +56,61 @@ export default function Navbar() {
             td/
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-6">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="font-mono text-xs tracking-wide text-slate-500 hover:text-violet-400 transition-colors duration-200"
+                className={`font-mono text-xs tracking-wide transition-colors duration-200 ${
+                  activeSection === l.section
+                    ? "text-violet-600 dark:text-violet-400"
+                    : "text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400"
+                }`}
               >
                 {l.label}
               </a>
             ))}
+            <ThemeToggle />
             <a
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs px-4 py-2 rounded-lg border border-violet-500/25 bg-violet-500/10 text-violet-400 hover:bg-violet-500/20 hover:border-violet-500/40 transition-all duration-200"
+              className="font-mono text-xs px-4 py-2 rounded-lg border border-violet-500/25 bg-violet-500/10 text-violet-700 dark:text-violet-400 hover:bg-violet-500/20 hover:border-violet-500/40 transition-all duration-200"
             >
               GitHub ↗
             </a>
           </div>
 
-          <button
-            className="md:hidden text-slate-400 hover:text-white transition-colors"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <div className="w-5 flex flex-col gap-1.5">
-              <span className={`block h-px bg-current transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`block h-px bg-current transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
-              <span className={`block h-px bg-current transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-            </div>
-          </button>
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors p-1"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
+              <div className="w-5 flex flex-col gap-1.5">
+                <span className={`block h-px bg-current transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+                <span className={`block h-px bg-current transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+                <span className={`block h-px bg-current transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              </div>
+            </button>
+          </div>
         </nav>
 
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}>
-          <div className="bg-[#030307]/90 backdrop-blur-2xl border-t border-white/[0.06] px-6 py-5 flex flex-col gap-5">
+        {/* Mobile dropdown */}
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0"}`}>
+          <div className="bg-white/92 dark:bg-[#030307]/92 backdrop-blur-2xl border-t border-black/[0.06] dark:border-white/[0.06] px-6 py-5 flex flex-col gap-5">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="font-mono text-xs text-slate-400 hover:text-violet-400 transition-colors"
+                className={`font-mono text-xs transition-colors ${
+                  activeSection === l.section
+                    ? "text-violet-600 dark:text-violet-400"
+                    : "text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400"
+                }`}
                 onClick={() => setMenuOpen(false)}
               >
                 {l.label}
@@ -87,7 +120,7 @@ export default function Navbar() {
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-violet-400"
+              className="font-mono text-xs text-violet-700 dark:text-violet-400"
             >
               GitHub ↗
             </a>
@@ -95,14 +128,14 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Gradient fade — blurs out content approaching the navbar from below */}
+      {/* Gradient fade below navbar */}
       <div
         className="fixed left-0 right-0 pointer-events-none"
         style={{
           top: "56px",
           height: "64px",
           zIndex: 49,
-          background: "linear-gradient(to bottom, rgba(3,3,7,0.85), transparent)",
+          background: `linear-gradient(to bottom, rgba(var(--page-bg-rgb),0.9), transparent)`,
         }}
       />
     </>
