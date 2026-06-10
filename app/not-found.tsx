@@ -17,20 +17,20 @@ export default function NotFound() {
         </div>
         {/* Ring 1 — 0° */}
         <div className="absolute inset-0" style={{ transform: "rotateZ(0deg) rotateX(70deg)" }}>
-          <div className="absolute inset-0 rounded-full border border-violet-400/40 animate-spin" style={{ animationDuration: "4s" }}>
-            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-violet-400 shadow shadow-violet-400/70" />
+          <div className="absolute inset-0 rounded-full animate-spin" style={{ animationDuration: "4s", boxShadow: "0 0 0 1.5px rgba(167,139,250,0.5), 0 0 10px rgba(167,139,250,0.15)" }}>
+            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-violet-400" style={{ boxShadow: "0 0 8px 2px rgba(167,139,250,0.6)" }} />
           </div>
         </div>
         {/* Ring 2 — 60° */}
         <div className="absolute inset-0" style={{ transform: "rotateZ(60deg) rotateX(70deg)" }}>
-          <div className="absolute inset-0 rounded-full border border-cyan-400/40 animate-spin" style={{ animationDuration: "6s", animationDirection: "reverse" }}>
-            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400 shadow shadow-cyan-400/70" />
+          <div className="absolute inset-0 rounded-full animate-spin" style={{ animationDuration: "6s", animationDirection: "reverse", boxShadow: "0 0 0 1.5px rgba(34,211,238,0.5), 0 0 10px rgba(34,211,238,0.15)" }}>
+            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400" style={{ boxShadow: "0 0 8px 2px rgba(34,211,238,0.6)" }} />
           </div>
         </div>
         {/* Ring 3 — -60° */}
         <div className="absolute inset-0" style={{ transform: "rotateZ(-60deg) rotateX(70deg)" }}>
-          <div className="absolute inset-0 rounded-full border border-indigo-400/40 animate-spin" style={{ animationDuration: "9s" }}>
-            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-indigo-400 shadow shadow-indigo-400/70" />
+          <div className="absolute inset-0 rounded-full animate-spin" style={{ animationDuration: "9s", boxShadow: "0 0 0 1.5px rgba(99,102,241,0.5), 0 0 10px rgba(99,102,241,0.15)" }}>
+            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-indigo-400" style={{ boxShadow: "0 0 8px 2px rgba(99,102,241,0.6)" }} />
           </div>
         </div>
       </div>
