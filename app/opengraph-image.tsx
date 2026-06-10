@@ -101,16 +101,23 @@ export default function Image() {
 
           {/* Name */}
           <div style={{
-            fontSize: "70px",
-            fontWeight: 800,
-            lineHeight: 1.04,
-            letterSpacing: "-0.025em",
-            background: "linear-gradient(135deg, #a78bfa 0%, #818cf8 42%, #22d3ee 100%)",
-            backgroundClip: "text",
-            color: "transparent",
+            display: "flex",
+            flexDirection: "column",
             marginBottom: "22px",
           }}>
-            Thomas<br />Delbrouck
+            {["Thomas", "Delbrouck"].map((word) => (
+              <span key={word} style={{
+                fontSize: "70px",
+                fontWeight: 800,
+                lineHeight: 1.04,
+                letterSpacing: "-0.025em",
+                background: "linear-gradient(135deg, #a78bfa 0%, #818cf8 42%, #22d3ee 100%)",
+                backgroundClip: "text",
+                color: "transparent",
+              }}>
+                {word}
+              </span>
+            ))}
           </div>
 
           {/* Role */}
