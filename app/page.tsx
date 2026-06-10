@@ -5,6 +5,7 @@ import Hero from "@/components/sections/Hero";
 import Projects from "@/components/sections/Projects";
 import Stack from "@/components/sections/Stack";
 import Timeline from "@/components/sections/Timeline";
+import Activity from "@/components/sections/Activity";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
           <Projects />
           <Stack />
           <Timeline />
+          <Activity />
           <Contact />
         </main>
         <Footer />
