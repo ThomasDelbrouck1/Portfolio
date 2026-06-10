@@ -66,11 +66,13 @@ export default function Hero() {
           {nowBuilding.map((item) => (
             <span
               key={item.label}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass font-mono text-[11px] text-slate-600 dark:text-slate-400"
+              className="inline-flex flex-wrap items-center gap-x-2 gap-y-0.5 px-3 py-1.5 rounded-full glass font-mono text-[11px]"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-dot shrink-0" />
-              {item.label}
-              <span className="text-slate-300 dark:text-slate-700">·</span>
+              <span className="inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
+                <span className="text-slate-700 dark:text-slate-200">{item.label}</span>
+              </span>
+              <span className="shrink-0 text-slate-300 dark:text-slate-600">—</span>
               <span className="text-slate-400 dark:text-slate-500">{item.tech}</span>
             </span>
           ))}
