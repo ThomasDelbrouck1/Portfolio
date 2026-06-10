@@ -7,7 +7,7 @@ export const personal = {
   status: "Open to opportunities",
   location: "Belgium",
   school: "Graduaat Programmeren",
-  // cv: "/cv.pdf", // uncomment and add your PDF to public/cv.pdf when ready
+  cv: "/cv.pdf",
 };
 
 export const nowBuilding = [
