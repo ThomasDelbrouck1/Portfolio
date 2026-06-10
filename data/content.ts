@@ -11,7 +11,7 @@ export const personal = {
 };
 
 export const nowBuilding = [
-  { label: "BASF prep", tech: "Python · Dash · AI/ML" },
+  { label: "BASF prep", tech: "Python · Dash · AI/ML · data tooling" },
   { label: "This portfolio", tech: "Next.js · Vercel" },
 ] as const;
 
