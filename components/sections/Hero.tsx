@@ -56,18 +56,6 @@ export default function Hero() {
             <MailIcon />
             Say hello
           </a>
-          {personal.cv && (
-            <a
-              href={personal.cv}
-              download
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl glass glass-hover text-slate-700 dark:text-slate-300 font-mono text-sm"
-            >
-              <DownloadIcon />
-              Download CV
-            </a>
-          )}
         </div>
 
         {/* Animated stats */}
@@ -104,14 +92,6 @@ function MailIcon() {
   return (
     <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    </svg>
-  );
-}
-
-function DownloadIcon() {
-  return (
-    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2" />
     </svg>
   );
 }
