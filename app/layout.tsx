@@ -9,7 +9,7 @@ const description =
   "Student developer from Belgium building web apps, APIs, cloud deployments, and the occasional quantum experiment. Currently preparing for a BASF internship.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://thomasdelbrouck.dev"), // update once deployed
+  metadataBase: new URL("https://thomasdelbrouck.dev"),
   title: "Thomas Delbrouck — Developer",
   description,
   keywords: [

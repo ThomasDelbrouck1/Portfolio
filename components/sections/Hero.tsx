@@ -50,7 +50,7 @@ export default function Hero() {
             <span className="text-violet-500/60 text-xs">↗</span>
           </a>
           <a
-            href={`mailto:${personal.email}`}
+            href="#contact"
             className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl glass glass-hover text-slate-700 dark:text-slate-300 font-mono text-sm"
           >
             <MailIcon />
