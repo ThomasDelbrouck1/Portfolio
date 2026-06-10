@@ -107,21 +107,31 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* GitHub link — always visible on mobile, hover reveal on desktop */}
                 {project.repo && (
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute inset-x-0 bottom-0 h-12 flex items-center justify-center gap-2
-                      md:opacity-0 md:group-hover:opacity-100 md:translate-y-1 md:group-hover:translate-y-0
-                      transition-all duration-300
-                      bg-gradient-to-t from-violet-500/20 via-violet-500/8 to-transparent
-                      rounded-b-2xl font-mono text-xs text-violet-600 dark:text-violet-400 font-semibold"
-                  >
-                    View on GitHub
-                    <ExternalLinkIcon />
-                  </a>
+                  <>
+                    {/* Mobile: inline tappable link below tech tags */}
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="md:hidden mt-4 pl-4 pt-3 flex items-center gap-1.5 border-t border-violet-500/15 font-mono text-xs text-violet-600 dark:text-violet-400 font-semibold"
+                    >
+                      View on GitHub <ExternalLinkIcon />
+                    </a>
+                    {/* Desktop: hover reveal overlay */}
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hidden md:flex absolute inset-x-0 bottom-0 h-12 items-center justify-center gap-2
+                        opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0
+                        transition-all duration-300
+                        bg-gradient-to-t from-violet-500/20 via-violet-500/8 to-transparent
+                        rounded-b-2xl font-mono text-xs text-violet-600 dark:text-violet-400 font-semibold"
+                    >
+                      View on GitHub <ExternalLinkIcon />
+                    </a>
+                  </>
                 )}
               </AnimateTiltCard>
             );
