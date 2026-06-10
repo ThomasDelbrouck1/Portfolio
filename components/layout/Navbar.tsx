@@ -65,6 +65,7 @@ export default function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
+                aria-current={activeSection === l.section ? "page" : undefined}
                 className={`relative pb-1 font-mono text-xs tracking-wide transition-colors duration-200 ${
                   activeSection === l.section
                     ? "text-violet-600 dark:text-violet-400"

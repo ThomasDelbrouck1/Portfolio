@@ -181,6 +181,8 @@ export default function Stack() {
                         <button
                           key={item.name}
                           onClick={() => toggle(item.name)}
+                          aria-pressed={isSel}
+                          aria-label={isSel ? `${item.name} — selected, click to deselect` : `${item.name} — click to see how I use it`}
                           className={`text-sm px-3 py-1.5 rounded-lg font-medium transition-all duration-150
                             hover:scale-[1.06] active:scale-95
                             ${isSel  ? `${c.active} animate-pill-selected` :
