@@ -144,5 +144,17 @@ body {
   50%       { opacity: 0.5; transform: scale(0.8); }
 }
 
-.animate-fade-up   { animation: fade-up 0.65s ease-out forwards; }
-.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+@keyframes chip-pop {
+  0%   { opacity: 0; transform: scale(0.75) translateY(6px); }
+  65%  { transform: scale(1.06) translateY(-1px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes pill-selected {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(167,139,250,0); }
+  50%       { box-shadow: 0 0 14px 4px rgba(167,139,250,0.3); }
+}
+
+.animate-fade-up      { animation: fade-up 0.65s ease-out forwards; }
+.animate-pulse-dot    { animation: pulse-dot 2s ease-in-out infinite; }
+.animate-pill-selected { animation: pill-selected 2s ease-in-out infinite; }

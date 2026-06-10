@@ -131,7 +131,11 @@ export default function Stack() {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-3">
             What I Work With
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mb-14">
+          <p className="text-slate-500 dark:text-slate-400 text-sm mb-14 flex items-center gap-2">
+            <span className="relative flex h-1.5 w-1.5 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-60" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-violet-400" />
+            </span>
             What I actually build with. Click anything to see how I use it.
           </p>
         </AnimateIn>
@@ -145,7 +149,11 @@ export default function Stack() {
 
             return (
               <AnimateIn key={cat} delay={i * 70}>
-                <div className={`glass rounded-2xl overflow-hidden transition-opacity duration-300 ${dimCard ? "opacity-30" : ""}`}>
+                <div className={`glass rounded-2xl overflow-hidden transition-all duration-300 ${
+                  dimCard
+                    ? "opacity-25 scale-[0.98]"
+                    : "hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-black/25"
+                }`}>
 
                   {/* Coloured header */}
                   <div className={`px-5 py-3.5 bg-gradient-to-r ${c.headerGrad} border-b ${c.headerBorder}`}>
@@ -173,12 +181,13 @@ export default function Stack() {
                         <button
                           key={item.name}
                           onClick={() => toggle(item.name)}
-                          className={`text-sm px-3 py-1.5 rounded-lg font-medium transition-all duration-200 ${
-                            isSel  ? c.active :
-                            isConn ? c.connected :
-                            isDim  ? `opacity-25 pointer-events-none ${c.pill}` :
-                                     `${c.pill} cursor-pointer`
-                          }`}
+                          className={`text-sm px-3 py-1.5 rounded-lg font-medium transition-all duration-150
+                            hover:scale-[1.06] active:scale-95
+                            ${isSel  ? `${c.active} animate-pill-selected` :
+                              isConn ? c.connected :
+                              isDim  ? `opacity-20 pointer-events-none ${c.pill}` :
+                                       `${c.pill} cursor-pointer`
+                            }`}
                         >
                           {item.name}
                         </button>
@@ -194,7 +203,7 @@ export default function Stack() {
 
         {/* Detail panel */}
         {selected && detail && selectedItem && (
-          <div key={selected} className="mt-5 animate-fade-up">
+          <div key={selected} className="mt-5" style={{ animation: "fade-up 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards" }}>
             <div className={`glass rounded-2xl overflow-hidden ${catStyle[selectedItem.category as Category].detailBorder}`}>
 
               <div className={`px-6 py-4 bg-gradient-to-r ${catStyle[selectedItem.category as Category].headerGrad} border-b ${catStyle[selectedItem.category as Category].headerBorder}`}>
@@ -208,7 +217,7 @@ export default function Stack() {
                   <button
                     onClick={() => setSelected(null)}
                     aria-label="Close"
-                    className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors text-xl leading-none"
+                    className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-white/[0.08] transition-all duration-150 text-lg leading-none"
                   >
                     ×
                   </button>
@@ -225,7 +234,7 @@ export default function Stack() {
                     <span className="font-mono text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest mr-1">
                       Works with
                     </span>
-                    {detail.connects.map(name => {
+                    {detail.connects.map((name, chipIdx) => {
                       const connItem = stackItems.find(i => i.name === name);
                       if (!connItem) return null;
                       const cc = catStyle[connItem.category as Category];
@@ -233,7 +242,8 @@ export default function Stack() {
                         <button
                           key={name}
                           onClick={() => toggle(name)}
-                          className={`font-mono text-[11px] px-2.5 py-1 rounded-lg border transition-opacity hover:opacity-70 ${cc.badge}`}
+                          className={`font-mono text-[11px] px-2.5 py-1 rounded-lg border hover:scale-[1.06] active:scale-95 transition-transform ${cc.badge}`}
+                          style={{ animation: `chip-pop 0.3s ease-out ${chipIdx * 55}ms both` }}
                         >
                           {name}
                         </button>
