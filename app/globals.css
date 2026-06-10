@@ -16,8 +16,12 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--page-bg);
+  background: linear-gradient(150deg, #ede8ff 0%, #fafafe 50%, #e8f2ff 100%) fixed;
   transition: background-color 0.25s, color 0.25s;
+}
+
+.dark body {
+  background: var(--page-bg);
 }
 
 ::-webkit-scrollbar { width: 5px; }
