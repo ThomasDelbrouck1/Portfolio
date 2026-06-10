@@ -63,9 +63,11 @@ export default function Contact() {
             </a>
           </div>
 
-          <p className="mt-4 font-mono text-[11px] text-slate-400 dark:text-slate-600">
-            {copied ? "Copied to clipboard!" : "Click the clipboard icon to copy the address."}
-          </p>
+          {copied && (
+            <p className="mt-4 font-mono text-[11px] text-emerald-500">
+              Copied to clipboard!
+            </p>
+          )}
         </AnimateIn>
       </div>
     </section>
