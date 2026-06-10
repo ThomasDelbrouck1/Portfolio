@@ -23,10 +23,9 @@ export default function Contact() {
             Let&apos;s Connect
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-10">
-            Second-year Graduaat Programmeren student with hands-on experience
-            shipping production applications and deploying cloud infrastructure.
-            Open to internship opportunities, technical collaborations, or
-            conversations about interesting problems — my inbox is always open.
+            Currently looking for an internship or junior role where I can do
+            real work — data engineering, ML systems, developer tooling, or
+            full-stack. If you&apos;re hiring or know someone who is, let&apos;s talk.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
