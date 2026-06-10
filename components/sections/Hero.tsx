@@ -1,7 +1,12 @@
-import { personal, nowBuilding } from "@/data/content";
+import { personal, nowBuilding, projects, stackItems } from "@/data/content";
 import CountUp from "@/components/ui/CountUp";
 
+const shippedStatuses = ["Production", "Shipped", "Live", "Completed"];
+
 export default function Hero() {
+  const shippedCount = projects.filter(p => shippedStatuses.includes(p.status)).length;
+  const techCount    = stackItems.length;
+
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Dot-grid overlay */}
@@ -81,9 +86,9 @@ export default function Hero() {
         {/* Animated stats */}
         <div className="mt-10 pt-8 md:mt-16 md:pt-10 border-t border-slate-200 dark:border-white/[0.06] flex flex-wrap gap-6 sm:gap-10">
           {[
-            { to: 5,  suffix: "",   label: "projects shipped" },
-            { to: 20, suffix: "+",  label: "technologies" },
-            { to: 2,  suffix: "nd", label: "year of studies" },
+            { to: shippedCount, suffix: "",   label: "projects shipped" },
+            { to: techCount,    suffix: "",   label: "technologies" },
+            { to: 2,            suffix: "nd", label: "year of studies" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-2xl font-bold gradient-text">
