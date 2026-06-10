@@ -13,94 +13,138 @@ export default function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          padding: "80px",
           background: "#030307",
-          fontFamily: "sans-serif",
-          position: "relative",
+          fontFamily: "system-ui, sans-serif",
           overflow: "hidden",
+          position: "relative",
         }}
       >
         {/* Background glows */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(ellipse 60% 80% at 10% 60%, rgba(139,92,246,0.18) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 90% 40%, rgba(34,211,238,0.10) 0%, transparent 60%)",
-          }}
-        />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse 70% 90% at 20% 55%, rgba(139,92,246,0.18) 0%, transparent 60%), radial-gradient(ellipse 55% 65% at 85% 25%, rgba(34,211,238,0.10) 0%, transparent 55%)",
+        }} />
 
         {/* Dot grid */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-          }}
-        />
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }} />
 
-        {/* Content */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px", position: "relative" }}>
-          {/* Monogram */}
-          <span
-            style={{
-              fontFamily: "monospace",
-              fontSize: "18px",
-              letterSpacing: "0.25em",
-              color: "#a78bfa",
-              fontWeight: 700,
-            }}
-          >
+        {/* Left panel — logo mark */}
+        <div style={{
+          width: "380px",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "20px",
+          borderRight: "1px solid rgba(139,92,246,0.14)",
+          position: "relative",
+        }}>
+          {/* TD box */}
+          <div style={{
+            width: "196px",
+            height: "196px",
+            borderRadius: "36px",
+            border: "1.5px solid rgba(139,92,246,0.40)",
+            background: "rgba(139,92,246,0.07)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 0 80px rgba(139,92,246,0.18), 0 0 30px rgba(139,92,246,0.10)",
+          }}>
+            <span style={{
+              fontSize: "94px",
+              fontWeight: 900,
+              background: "linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #22d3ee 100%)",
+              backgroundClip: "text",
+              color: "transparent",
+              letterSpacing: "-0.04em",
+              lineHeight: 1,
+            }}>
+              TD
+            </span>
+          </div>
+
+          <span style={{
+            fontFamily: "monospace",
+            fontSize: "12px",
+            color: "rgba(148,163,184,0.30)",
+            letterSpacing: "0.14em",
+          }}>
+            thomasdelbrouck.dev
+          </span>
+        </div>
+
+        {/* Right panel — info */}
+        <div style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          padding: "64px 72px",
+        }}>
+          {/* Label */}
+          <span style={{
+            fontFamily: "monospace",
+            fontSize: "14px",
+            color: "#a78bfa",
+            letterSpacing: "0.22em",
+            fontWeight: 700,
+            marginBottom: "22px",
+          }}>
             td/
           </span>
 
           {/* Name */}
-          <div
-            style={{
-              fontSize: "76px",
-              fontWeight: 800,
-              lineHeight: 1.05,
-              letterSpacing: "-0.02em",
-              background: "linear-gradient(135deg, #a78bfa 0%, #818cf8 45%, #22d3ee 100%)",
-              backgroundClip: "text",
-              color: "transparent",
-            }}
-          >
-            Thomas Delbrouck
+          <div style={{
+            fontSize: "70px",
+            fontWeight: 800,
+            lineHeight: 1.04,
+            letterSpacing: "-0.025em",
+            background: "linear-gradient(135deg, #a78bfa 0%, #818cf8 42%, #22d3ee 100%)",
+            backgroundClip: "text",
+            color: "transparent",
+            marginBottom: "22px",
+          }}>
+            Thomas<br />Delbrouck
           </div>
 
-          {/* Subtitle */}
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: "#34d399",
-                display: "block",
-              }}
-            />
-            <span style={{ fontSize: "24px", color: "#94a3b8", letterSpacing: "0.02em" }}>
+          {/* Role */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            marginBottom: "36px",
+          }}>
+            <span style={{
+              width: "8px", height: "8px",
+              borderRadius: "50%",
+              background: "#34d399",
+              flexShrink: 0,
+              display: "block",
+              boxShadow: "0 0 8px rgba(52,211,153,0.6)",
+            }} />
+            <span style={{ fontSize: "22px", color: "#94a3b8" }}>
               Student Developer · Belgium
             </span>
           </div>
 
-          {/* Tags */}
-          <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
-            {["Next.js", "TypeScript", "Docker", "Supabase", "Python"].map((tag) => (
+          {/* Tech chips */}
+          <div style={{ display: "flex", gap: "8px" }}>
+            {["TypeScript", "Python", "Next.js", "Docker"].map((tag) => (
               <span
                 key={tag}
                 style={{
-                  background: "rgba(139,92,246,0.12)",
-                  border: "1px solid rgba(139,92,246,0.25)",
+                  background: "rgba(139,92,246,0.10)",
+                  border: "1px solid rgba(139,92,246,0.24)",
                   color: "#a78bfa",
-                  padding: "5px 14px",
-                  borderRadius: "6px",
-                  fontSize: "15px",
+                  padding: "5px 16px",
+                  borderRadius: "8px",
+                  fontSize: "14px",
                   fontFamily: "monospace",
                   letterSpacing: "0.05em",
                 }}
@@ -109,21 +153,6 @@ export default function Image() {
               </span>
             ))}
           </div>
-        </div>
-
-        {/* Bottom-right URL hint */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "48px",
-            right: "80px",
-            fontFamily: "monospace",
-            fontSize: "14px",
-            color: "rgba(148,163,184,0.4)",
-            letterSpacing: "0.1em",
-          }}
-        >
-          thomasdelbrouck.dev
         </div>
       </div>
     ),
