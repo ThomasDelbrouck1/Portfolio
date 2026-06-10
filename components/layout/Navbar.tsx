@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import { personal } from "@/data/content";
 
 const links = [
-  { label: "Projects", href: "#projects" },
+  { label: "Work", href: "#projects" },
   { label: "Stack", href: "#stack" },
-  { label: "Timeline", href: "#timeline" },
+  { label: "Path", href: "#timeline" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -29,7 +29,6 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
         <a
           href="#home"
           className="font-mono text-sm font-semibold tracking-widest gradient-text"
@@ -37,7 +36,6 @@ export default function Navbar() {
           td/
         </a>
 
-        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <a
@@ -58,38 +56,20 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile burger */}
         <button
           className="md:hidden text-slate-400 hover:text-white transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
           <div className="w-5 flex flex-col gap-1.5">
-            <span
-              className={`block h-px bg-current transition-all duration-300 origin-center ${
-                menuOpen ? "rotate-45 translate-y-2" : ""
-              }`}
-            />
-            <span
-              className={`block h-px bg-current transition-all duration-300 ${
-                menuOpen ? "opacity-0 scale-x-0" : ""
-              }`}
-            />
-            <span
-              className={`block h-px bg-current transition-all duration-300 origin-center ${
-                menuOpen ? "-rotate-45 -translate-y-2" : ""
-              }`}
-            />
+            <span className={`block h-px bg-current transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block h-px bg-current transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+            <span className={`block h-px bg-current transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </div>
         </button>
       </nav>
 
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}>
         <div className="glass border-t border-white/[0.06] px-6 py-5 flex flex-col gap-5">
           {links.map((l) => (
             <a

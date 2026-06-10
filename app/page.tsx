@@ -1,21 +1,27 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
-import Stack from "@/components/Stack";
-import Timeline from "@/components/Timeline";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import ParticleBackground from "@/components/effects/ParticleBackground";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import Projects from "@/components/sections/Projects";
+import Stack from "@/components/sections/Stack";
+import Timeline from "@/components/sections/Timeline";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
-    <main>
-      <Navbar />
-      <Hero />
-      <Projects />
-      <Stack />
-      <Timeline />
-      <Contact />
-      <Footer />
-    </main>
+    <>
+      <ParticleBackground />
+      <div className="relative" style={{ zIndex: 1 }}>
+        <Navbar />
+        <main>
+          <Hero />
+          <Projects />
+          <Stack />
+          <Timeline />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }

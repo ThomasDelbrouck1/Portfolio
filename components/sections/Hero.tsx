@@ -6,24 +6,20 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* Background gradient orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-20 -left-40 w-[700px] h-[700px] rounded-full bg-violet-700/10 blur-[140px]" />
-        <div className="absolute bottom-0 -right-40 w-[600px] h-[600px] rounded-full bg-indigo-700/8 blur-[120px]" />
-        <div className="absolute top-2/3 left-1/3 w-[400px] h-[400px] rounded-full bg-cyan-700/6 blur-[100px]" />
-      </div>
-
-      {/* Subtle grid */}
+      {/* Subtle dot-grid overlay — keeps a grounded feel over the canvas */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
+            "radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
         }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-28 pb-20 w-full">
+      {/* Soft depth gradient at the bottom so sections blend in */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#030307] to-transparent pointer-events-none" />
+
+      <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-24 w-full">
         {/* Status pill */}
         <div className="inline-flex items-center gap-2.5 glass rounded-full px-4 py-2 mb-10">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
@@ -32,17 +28,17 @@ export default function Hero() {
           </span>
           <span className="text-slate-700 text-xs">·</span>
           <span className="font-mono text-[11px] text-slate-600">
-            {personal.location}
+            {personal.school} · {personal.location}
           </span>
         </div>
 
         {/* Name */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-6">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.04] tracking-tight mb-8">
           <span className="gradient-text">{personal.name}</span>
         </h1>
 
-        {/* Tagline */}
-        <p className="text-base md:text-lg text-slate-400 max-w-xl leading-relaxed mb-12">
+        {/* Personal tagline */}
+        <p className="text-base md:text-lg text-slate-400 max-w-2xl leading-relaxed mb-12">
           {personal.tagline}
         </p>
 
@@ -56,28 +52,28 @@ export default function Hero() {
           >
             <GitHubIcon />
             GitHub
-            <span className="text-violet-500">↗</span>
+            <span className="text-violet-500/60 text-xs">↗</span>
           </a>
 
           <a
             href={`mailto:${personal.email}`}
-            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl glass glass-hover text-slate-300 font-mono text-sm"
+            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl glass glass-hover text-slate-400 font-mono text-sm"
           >
             <MailIcon />
-            {personal.email}
+            Say hello
           </a>
         </div>
 
-        {/* Quick stats */}
-        <div className="mt-20 pt-10 border-t border-white/[0.05] flex flex-wrap gap-10">
+        {/* Stats */}
+        <div className="mt-24 pt-10 border-t border-white/[0.05] flex flex-wrap gap-10">
           {[
-            { value: "5+", label: "Projects shipped" },
-            { value: "20+", label: "Technologies" },
-            { value: "3+", label: "Years learning" },
+            { value: "5", label: "projects shipped" },
+            { value: "20+", label: "technologies" },
+            { value: "3rd", label: "year of studies" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-2xl font-bold gradient-text">{s.value}</div>
-              <div className="font-mono text-[10px] text-slate-600 mt-1 tracking-wide uppercase">
+              <div className="font-mono text-[10px] text-slate-600 mt-1 tracking-widest uppercase">
                 {s.label}
               </div>
             </div>
@@ -98,18 +94,8 @@ function GitHubIcon() {
 
 function MailIcon() {
   return (
-    <svg
-      className="w-4 h-4 shrink-0"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-      />
+    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
     </svg>
   );
 }
