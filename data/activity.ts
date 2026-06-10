@@ -15,7 +15,7 @@ export const activityEvents: ActivityEvent[] = [
   {
     id: "a2",
     timestamp: "2026-06-08T15:30:00",
-    message: "Finished exam preparation for Q4 Applied Computer Science modules",
+    message: "Finished exam preparation for Q4 Graduaat Programmeren modules",
     level: "success",
   },
   {

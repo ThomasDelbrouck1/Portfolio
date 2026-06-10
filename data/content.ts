@@ -1,15 +1,36 @@
 export const personal = {
   name: "Thomas Delbrouck",
   tagline:
-    "I'm a student developer from Belgium who loves building things for the web. I work across the full stack — from Express APIs and databases to Docker deployments and the occasional quantum experiment.",
-  email: "thomas.delbrouck@telenet.be",
+    "Graduaat Programmeren student from Belgium with production experience across the full stack — TypeScript APIs, database design, containerised cloud deployments, and quantum ML research. Currently sharpening my Python and data engineering skills ahead of a software internship at BASF.",
+  email: "delbrouck.thomas4@gmail.com",
   github: "https://github.com/ThomasDelbrouck1",
   status: "Open to opportunities",
   location: "Belgium",
-  school: "Applied Computer Science",
+  school: "Graduaat Programmeren",
+  // cv: "/cv.pdf", // uncomment and add your PDF to public/cv.pdf when ready
 };
 
-export const projects = [
+export interface Project {
+  name: string;
+  description: string;
+  tech: readonly string[];
+  category: string;
+  status: string;
+  accent: string;
+  repo?: string;
+}
+
+export const projects: Project[] = [
+  {
+    name: "Internship Blog",
+    description:
+      "A Next.js and Supabase platform where students document their internship journey over time — structured posts, mentor feedback, and ongoing support throughout the internship period.",
+    tech: ["Next.js", "TypeScript", "Supabase", "SQL"],
+    category: "Personal Project",
+    status: "Production",
+    accent: "indigo",
+    repo: "https://github.com/DVdBdev/blog-app",
+  },
   {
     name: "Pokémon Viewer",
     description:
@@ -18,6 +39,7 @@ export const projects = [
     category: "Web Application",
     status: "Shipped",
     accent: "violet",
+    repo: "https://github.com/ThomasDelbrouck1/project_webOntwikkeling_2025",
   },
   {
     name: "Beerster",
@@ -27,6 +49,7 @@ export const projects = [
     category: "Web Application",
     status: "Shipped",
     accent: "violet",
+    repo: "https://github.com/ThomasDelbrouck1/DoublePump2.0",
   },
   {
     name: "SchoolAdmin",
@@ -36,6 +59,7 @@ export const projects = [
     category: "Console App",
     status: "Shipped",
     accent: "blue",
+    // Private repository
   },
   {
     name: "Cloud Deployment Project",
@@ -45,6 +69,7 @@ export const projects = [
     category: "DevOps",
     status: "Live",
     accent: "cyan",
+    repo: "https://github.com/ThomasDelbrouck1/CloudProject",
   },
   {
     name: "Quantum ML Project",
@@ -54,83 +79,92 @@ export const projects = [
     category: "Research",
     status: "Completed",
     accent: "emerald",
+    // Private repository
   },
-] as const;
+];
 
-export type Project = (typeof projects)[number];
-
-export const stackCategories = [
-  {
-    label: "Languages",
-    color: "violet",
-    items: ["JavaScript", "TypeScript", "C#", "Python", "SQL", "HTML", "CSS"],
-  },
-  {
-    label: "Frameworks & Libraries",
-    color: "indigo",
-    items: ["Node.js", "Express", ".NET", "EJS", "Qiskit"],
-  },
-  {
-    label: "Databases",
-    color: "blue",
-    items: ["MongoDB", "MySQL"],
-  },
-  {
-    label: "DevOps & Cloud",
-    color: "cyan",
-    items: [
-      "Docker",
-      "Docker Compose",
-      "Traefik",
-      "GitHub Actions",
-      "Hetzner VPS",
-      "Linux",
-    ],
-  },
-  {
-    label: "Tools & Concepts",
-    color: "emerald",
-    items: [
-      "Git",
-      "REST APIs",
-      "JWT",
-      "bcrypt",
-      "Authentication",
-      "MSTest",
-      "Jest",
-      "CI/CD",
-      "Database Design",
-    ],
-  },
+export const stackItems = [
+  { name: "TypeScript",     category: "Language"  },
+  { name: "Python",         category: "Language"  },
+  { name: "JavaScript",     category: "Language"  },
+  { name: "C#",             category: "Language"  },
+  { name: "SQL",            category: "Language"  },
+  { name: "Next.js",        category: "Framework" },
+  { name: "React",          category: "Framework" },
+  { name: "Express",        category: "Framework" },
+  { name: "Node.js",        category: "Framework" },
+  { name: ".NET",           category: "Framework" },
+  { name: "MongoDB",        category: "Database"  },
+  { name: "MySQL",          category: "Database"  },
+  { name: "Supabase",       category: "Database"  },
+  { name: "Docker",         category: "DevOps"    },
+  { name: "GitHub Actions", category: "DevOps"    },
+  { name: "Linux",          category: "DevOps"    },
+  { name: "Hetzner VPS",    category: "DevOps"    },
+  { name: "Git",            category: "Tooling"   },
+  { name: "REST APIs",      category: "Tooling"   },
+  { name: "CI/CD",          category: "Tooling"   },
+  { name: "Auth / JWT",     category: "Tooling"   },
+  { name: "Testing",        category: "Tooling"   },
+  { name: "Qiskit",         category: "ML / AI"   },
+  { name: "Quantum ML",     category: "ML / AI"   },
 ] as const;
 
 export const timeline = [
   {
-    year: "2023",
-    title: "Started Computer Science",
+    year: "2022 – 2024",
+    title: "Studied Bachelor Electronics-ICT",
     description:
-      "Enrolled in Applied Computer Science at HoGent. Started from the fundamentals and picked up speed fast — algorithms, OOP, databases, and web from day one.",
+      "Studied Electronics-ICT at bachelor level for two years, where I built a broader technical foundation before switching to a more practical programming-focused path. This gave me early exposure to software, hardware, networking, electronics, and general IT concepts.",
     type: "education",
+    tags: ["Bachelor", "Electronics-ICT", "Software", "Hardware", "Networking", "IT fundamentals"],
   },
   {
-    year: "2024",
-    title: "Built My First Real Apps",
+    year: "Sep 2024",
+    title: "Started Graduaat Programmeren at AP",
     description:
-      "Shipped Pokémon Viewer and Beerster as proper full-stack projects. TypeScript, Express, MongoDB, Docker, auth — suddenly everything clicked.",
-    type: "project",
+      "Started the Graduaat Programmeren at AP Hogeschool after two years in a bachelor Electronics-ICT program. Continued building my foundation in software development, web development, databases, object-oriented programming, and project-based work, with a stronger focus on practical programming.",
+    type: "education",
+    tags: ["AP Hogeschool", "Programming", "Web development", "Databases", "C#", "JavaScript"],
   },
   {
     year: "2025",
-    title: "Cloud Infra & Quantum Computing",
+    title: "IBM Quantum Machine Learning Case",
     description:
-      "Deployed a production app on Hetzner with Docker, Traefik, and CI/CD. Then went deep on quantum machine learning with IBM — Qiskit, real data, real results.",
-    type: "milestone",
+      "Worked on an IBM case focused on quantum machine learning. Used Python and Qiskit to explore quantum neural networks, train models on real data, and compare quantum-inspired approaches with classical machine learning concepts.",
+    type: "project",
+    tags: ["IBM", "Python", "Qiskit", "Quantum machine learning", "QNN", "Machine learning"],
   },
   {
-    year: "2026",
-    title: "Graduation",
+    year: "Now",
+    title: "Growing toward data & ML systems",
     description:
-      "Expected to complete Applied Computer Science. Until then, still building, still learning, still shipping.",
+      "Currently focused on becoming stronger as a junior developer, with a growing interest in data engineering, machine learning systems, internal tools, dashboards, and clean full-stack applications.",
+    type: "milestone",
+    tags: ["Data engineering", "ML systems", "Full-stack", "Internal tools", "Python"],
+  },
+  {
+    year: "Sep 2026",
+    title: "Internship at BASF",
+    description:
+      "Starting my internship at BASF, where I will work on practical software and data-related tooling in a professional environment. The internship is expected to involve Python, Dash, internal tools, dashboards, testing automation, and software that supports real business workflows.",
     type: "upcoming",
+    tags: ["Internship", "BASF", "Python", "Dash", "Data tooling", "Internal tools"],
+  },
+  {
+    year: "Jan 2027",
+    title: "Completing BASF Internship",
+    description:
+      "Expected to complete my BASF internship in January after working on self-service tooling, dashboard interfaces, testing automation, and data/AI workflow configuration. The experience should give me real insight into how software is built and used inside a large industrial company.",
+    type: "upcoming",
+    tags: ["BASF", "Internship", "Data tooling", "Testing automation", "Dashboards"],
+  },
+  {
+    year: "2027",
+    title: "Expected Graduation",
+    description:
+      "Expected to graduate from Graduaat Programmeren at AP Hogeschool after completing my internship and final school requirements. Until then, still building, still learning, still shipping.",
+    type: "upcoming",
+    tags: ["AP Hogeschool", "Graduation", "Junior developer", "Software development"],
   },
 ] as const;
