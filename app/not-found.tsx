@@ -9,28 +9,29 @@ export default function NotFound() {
         style={{ background: "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)" }}
       />
 
-      {/* Atom-like orbit */}
-      <div className="relative w-36 h-36 mb-12">
+      {/* Atom-like orbit — 3D orbital planes */}
+      <div className="relative w-36 h-36 mb-12" style={{ perspective: "400px" }}>
+        {/* Nucleus */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="w-3.5 h-3.5 rounded-full bg-violet-400 shadow-lg shadow-violet-500/60" />
+          <div className="w-4 h-4 rounded-full bg-violet-400 shadow-lg shadow-violet-500/60" />
         </div>
-        <div
-          className="absolute inset-0 rounded-full border border-violet-500/25 animate-spin"
-          style={{ animationDuration: "4s" }}
-        >
-          <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-violet-400 shadow shadow-violet-400/60" />
+        {/* Plane 1 */}
+        <div style={{ position: "absolute", inset: 0, transform: "rotateX(72deg)" }}>
+          <div className="absolute inset-0 rounded-full border border-violet-400/35 animate-spin" style={{ animationDuration: "4s" }}>
+            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-violet-400 shadow shadow-violet-400/70" />
+          </div>
         </div>
-        <div
-          className="absolute inset-3 rounded-full border border-cyan-500/25 animate-spin"
-          style={{ animationDuration: "6s", animationDirection: "reverse", transform: "rotate(60deg)" }}
-        >
-          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-cyan-400 shadow shadow-cyan-400/60" />
+        {/* Plane 2 */}
+        <div style={{ position: "absolute", inset: "10px", transform: "rotateX(72deg) rotateZ(60deg)" }}>
+          <div className="absolute inset-0 rounded-full border border-cyan-400/35 animate-spin" style={{ animationDuration: "6s", animationDirection: "reverse" }}>
+            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400 shadow shadow-cyan-400/70" />
+          </div>
         </div>
-        <div
-          className="absolute inset-6 rounded-full border border-indigo-500/25 animate-spin"
-          style={{ animationDuration: "9s", transform: "rotate(120deg)" }}
-        >
-          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-indigo-400" />
+        {/* Plane 3 */}
+        <div style={{ position: "absolute", inset: "20px", transform: "rotateX(72deg) rotateZ(120deg)" }}>
+          <div className="absolute inset-0 rounded-full border border-indigo-400/35 animate-spin" style={{ animationDuration: "9s" }}>
+            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-indigo-400 shadow shadow-indigo-400/70" />
+          </div>
         </div>
       </div>
 
