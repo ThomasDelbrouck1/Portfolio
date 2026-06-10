@@ -120,7 +120,7 @@ export default function Image() {
             ))}
           </div>
 
-          {/* Role */}
+          {/* Status */}
           <div style={{
             display: "flex",
             alignItems: "center",
@@ -136,7 +136,7 @@ export default function Image() {
               boxShadow: "0 0 8px rgba(52,211,153,0.6)",
             }} />
             <span style={{ fontSize: "22px", color: "#94a3b8" }}>
-              Student Developer · Belgium
+              Developer · Belgium · Open to opportunities
             </span>
           </div>
 
