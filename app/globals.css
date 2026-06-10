@@ -158,3 +158,16 @@ body {
 .animate-fade-up      { animation: fade-up 0.65s ease-out forwards; }
 .animate-pulse-dot    { animation: pulse-dot 2s ease-in-out infinite; }
 .animate-pill-selected { animation: pill-selected 2s ease-in-out infinite; }
+
+/* ── Theme toggle ripple (View Transitions API) ───────── */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) { animation: none; }
+  ::view-transition-new(root) {
+    animation: theme-circle-in 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes theme-circle-in {
+  from { clip-path: circle(0px at var(--vt-x, 50%) var(--vt-y, 50%)); }
+  to   { clip-path: circle(100vmax at var(--vt-x, 50%) var(--vt-y, 50%)); }
+}

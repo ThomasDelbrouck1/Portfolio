@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+type DocWithVT = Document & {
+  startViewTransition?: (cb: () => void) => void;
+};
+
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(true);
 
@@ -9,11 +13,26 @@ export default function ThemeToggle() {
     setIsDark(document.documentElement.classList.contains("dark"));
   }, []);
 
-  const toggle = () => {
+  const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const next = !isDark;
-    setIsDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    try { localStorage.setItem("theme", next ? "dark" : "light"); } catch {}
+
+    const applyTheme = () => {
+      setIsDark(next);
+      document.documentElement.classList.toggle("dark", next);
+      try { localStorage.setItem("theme", next ? "dark" : "light"); } catch {}
+    };
+
+    const vt = (document as DocWithVT).startViewTransition;
+    if (!vt) {
+      applyTheme();
+      return;
+    }
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    document.documentElement.style.setProperty("--vt-x", `${Math.round(rect.left + rect.width / 2)}px`);
+    document.documentElement.style.setProperty("--vt-y", `${Math.round(rect.top + rect.height / 2)}px`);
+
+    vt.call(document, applyTheme);
   };
 
   return (
