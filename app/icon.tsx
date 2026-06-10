@@ -11,24 +11,54 @@ export default function Icon() {
           width: 32,
           height: 32,
           borderRadius: 8,
-          background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 60%, #0891b2 100%)",
+          background: "#0c0a1e",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <span
+        {/* Subtle background glow */}
+        <div
           style={{
-            color: "white",
-            fontSize: 14,
-            fontWeight: 800,
-            fontFamily: "sans-serif",
-            letterSpacing: "-0.5px",
-            lineHeight: 1,
+            position: "absolute",
+            width: 28,
+            height: 28,
+            borderRadius: "50%",
+            background: "rgba(124,58,237,0.18)",
+            top: 2,
+            left: 2,
+          }}
+        />
+        {/* Geometric T mark */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            position: "relative",
           }}
         >
-          td
-        </span>
+          {/* Crossbar — gradient */}
+          <div
+            style={{
+              width: 22,
+              height: 5,
+              borderRadius: 2,
+              background: "linear-gradient(90deg, #7c3aed 0%, #818cf8 60%, #22d3ee 100%)",
+            }}
+          />
+          {/* Stem — white */}
+          <div
+            style={{
+              width: 6,
+              height: 12,
+              borderRadius: "0 0 2px 2px",
+              background: "rgba(255,255,255,0.92)",
+            }}
+          />
+        </div>
       </div>
     ),
     { ...size },
