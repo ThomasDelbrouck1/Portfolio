@@ -13,10 +13,10 @@ export default function Hero() {
         style={{ background: "linear-gradient(to top, var(--page-bg), transparent)" }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-32 pb-24 w-full">
+      <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-16 md:pt-32 md:pb-24 w-full">
 
         {/* Status pill — gently bobs */}
-        <div className="inline-flex items-center gap-2.5 glass rounded-full px-4 py-2 mb-10 animate-float">
+        <div className="inline-flex items-center flex-wrap gap-2 glass rounded-full px-4 py-2 mb-7 md:mb-10 animate-float">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
           <span className="font-mono text-[11px] text-slate-600 dark:text-slate-300">
             {personal.status}
@@ -28,12 +28,12 @@ export default function Hero() {
         </div>
 
         {/* Name with shimmer gradient */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.04] tracking-tight mb-8">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold leading-[1.04] tracking-tight mb-5 md:mb-8">
           <span className="shimmer-text">{personal.name}</span>
         </h1>
 
         {/* Tagline */}
-        <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mb-12">
+        <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mb-8 md:mb-12">
           {personal.tagline}
         </p>
 
@@ -77,7 +77,7 @@ export default function Hero() {
         </div>
 
         {/* Animated stats */}
-        <div className="mt-16 pt-10 border-t border-slate-200 dark:border-white/[0.06] flex flex-wrap gap-6 sm:gap-10">
+        <div className="mt-10 pt-8 md:mt-16 md:pt-10 border-t border-slate-200 dark:border-white/[0.06] flex flex-wrap gap-6 sm:gap-10">
           {[
             { to: 5,  suffix: "",   label: "projects shipped" },
             { to: 20, suffix: "+",  label: "technologies" },

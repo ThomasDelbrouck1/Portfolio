@@ -44,7 +44,7 @@ const accentMap: Record<string, { strip: string; label: string; tag: string; tin
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-28 relative">
+    <section id="projects" className="py-16 md:py-28 relative">
       <div className="relative max-w-6xl mx-auto px-6">
 
         <AnimateIn>
@@ -52,7 +52,7 @@ export default function Projects() {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-3">
             Things I&apos;ve Built
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mb-14">
+          <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 md:mb-14">
             A mix of coursework and personal experiments — each one taught me something new.
           </p>
         </AnimateIn>

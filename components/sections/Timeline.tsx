@@ -68,7 +68,7 @@ export default function Timeline() {
   }, []);
 
   return (
-    <section id="timeline" className="py-28 relative">
+    <section id="timeline" className="py-16 md:py-28 relative">
       <div className="relative max-w-6xl mx-auto px-6">
 
         <AnimateIn>
@@ -76,7 +76,7 @@ export default function Timeline() {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-3">
             The Story So Far
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mb-14">
+          <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 md:mb-14">
             The steps that shaped who I am as a developer.
           </p>
         </AnimateIn>

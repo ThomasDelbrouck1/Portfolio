@@ -46,9 +46,9 @@ function FeedEntry({ event, index }: { event: ActivityEvent; index: number }) {
 
 export default function Activity() {
   return (
-    <section id="activity" className="py-28 relative">
+    <section id="activity" className="py-16 md:py-28 relative">
       <div className="relative max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
           {/* Left — header + status panel */}
           <div className="lg:col-span-1">

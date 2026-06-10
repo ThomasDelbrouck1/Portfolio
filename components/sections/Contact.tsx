@@ -15,7 +15,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 relative">
+    <section id="contact" className="py-16 md:py-28 relative">
       <div className="relative max-w-6xl mx-auto px-6">
         <AnimateIn className="max-w-lg">
           <SectionLabel />

@@ -123,7 +123,7 @@ export default function Stack() {
   const toggle = (name: string) => setSelected(prev => prev === name ? null : name);
 
   return (
-    <section id="stack" className="py-28 relative">
+    <section id="stack" className="py-16 md:py-28 relative">
       <div className="relative max-w-6xl mx-auto px-6">
 
         <AnimateIn>
@@ -131,7 +131,7 @@ export default function Stack() {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-3">
             What I Work With
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mb-14 flex items-center gap-2">
+          <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 md:mb-14 flex items-center gap-2">
             <span className="relative flex h-1.5 w-1.5 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-60" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-violet-400" />
