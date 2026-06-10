@@ -77,6 +77,14 @@ export const projects: Project[] = [
     repo: "https://github.com/ThomasDelbrouck1/CloudProject",
   },
   {
+    name: "Test Project",
+    description: "Temporary test card to verify the dynamic shipped counter updates automatically.",
+    tech: ["Test"],
+    category: "Test",
+    status: "Shipped",
+    accent: "violet",
+  },
+  {
     name: "Quantum ML Project",
     description:
       "Explored quantum machine learning with IBM — quantum neural networks in Qiskit applied to real datasets. A rabbit hole I genuinely enjoyed going down.",
